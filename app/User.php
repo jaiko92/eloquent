@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relacion uno a uno hasOne
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    //un usuario pertenece a un nivel
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function groups()
+    {
+        $this->belongsToMany(Group::class)->withTimestamps();
+    }
 }
